@@ -109,36 +109,85 @@ bool test_is_vowel() {
 
 bool test_is_tail() {
   // TODO: Implementar esta funcion
+  if (!is_tail('w') || !is_tail('a') || !is_tail('s') || !is_tail('d')) {
+    printf("Error: is_tail falló con caracteres válidos\n");
+    return false;
+  }
+  if (is_tail('W') || is_tail('x') || is_tail('^')) {
+    printf("Error: is_tail retornó true con caracteres inválidos\n");
+    return false;
+  }
   return true;
 }
 
 bool test_is_head() {
   // TODO: Implementar esta funcion
+  if (!is_head('W') || !is_head('A') || !is_head('S') || !is_head('D') || !is_head('x')) {
+    printf("Error: is_head falló con caracteres válidos\n");
+    return false;
+  }
+  if (is_head('w') || is_head('s') || is_head('^')) {
+    printf("Error: is_head retornó true con caracteres inválidos\n");
+    return false;
+  }
   return true;
 }
 
 bool test_is_snake() {
   // TODO: Implementar esta funcion
+  const char valid[] = {'w','a','s','d','W','A','S','D','x','^','<','v','>'};
+  for (int i = 0; i < sizeof(valid); i++) {
+    if (!is_snake(valid[i])) {
+      printf("Error: is_snake falló con carácter '%c'\n", valid[i]);
+        return false;
+    }
+    }
+    if (is_snake('z') || is_snake('#') || is_snake('0')) {
+      printf("Error: is_snake retornó true con caracteres inválidos\n");
+      return false;
+    }
   return true;
 }
 
 bool test_body_to_tail() {
   // TODO: Implementar esta funcion
+  if (body_to_tail('^') != 'w') return false;
+  if (body_to_tail('<') != 'a') return false;
+  if (body_to_tail('v') != 's') return false;
+  if (body_to_tail('>') != 'd') return false;
   return true;
 }
 
 bool test_head_to_body() {
   // TODO: Implement this function.
+  if (head_to_body('W') != '^') return false;
+  if (head_to_body('A') != '<') return false;
+  if (head_to_body('S') != 'v') return false;
+  if (head_to_body('D') != '>') return false;
   return true;
 }
 
 bool test_get_next_row() {
   // TODO: Implement this function.
+  if (get_next_row(5, 'v') != 6) return false;
+  if (get_next_row(5, 's') != 6) return false;
+  if (get_next_row(5, 'S') != 6) return false;
+  if (get_next_row(5, '^') != 4) return false;
+  if (get_next_row(5, 'w') != 4) return false;
+  if (get_next_row(5, 'W') != 4) return false;
+  if (get_next_row(5, '>') != 5) return false;
   return true;
 }
 
 bool test_get_next_col() {
   // TODO: Implementar esta funcion
+  if (get_next_col(5, '>') != 6) return false;
+  if (get_next_col(5, 'd') != 6) return false;
+  if (get_next_col(5, 'D') != 6) return false;
+  if (get_next_col(5, '<') != 4) return false;
+  if (get_next_col(5, 'a') != 4) return false;
+  if (get_next_col(5, 'A') != 4) return false;
+  if (get_next_col(5, '^') != 5) return false;
   return true;
 }
 
